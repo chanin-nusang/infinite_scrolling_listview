@@ -63,33 +63,100 @@ class PeopleTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      // leading: ,
-      title: _title(),
-      subtitle: _subtitle(),
-      isThreeLine: true,
-      trailing: Text(
-        "${people?.no}",
-        style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
+    return Container(
+      padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+      child: Row(
+        children: [
+          CircleAvatar(
+              radius: 40,
+              backgroundImage: NetworkImage(
+                  'https://starwars-visualguide.com/assets/img/characters/${people?.no}.jpg')),
+          SizedBox(
+            width: 10,
+          ),
+          Expanded(
+            //height: 100,
+            child: Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    people?.name ?? ' ',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Text(
+                    "Gender : ${people?.gender}   Height : ${people?.height.toString()}   Mass : ${people?.mass.toString()}",
+                    style: TextStyle(fontSize: 15, color: Colors.grey[600]),
+                  ),
+                  Text(
+                      'Hair/Skin/Eye Color : ${people?.hairColor}/${people?.skinColor}/${people?.eyeColor}',
+                      style: TextStyle(color: Colors.grey[600])),
+                  Text('Year of Birth : ${people?.birthYear}',
+                      style: TextStyle(
+                          color: Colors.grey[600], fontWeight: FontWeight.w400))
+                ],
+              ),
+            ),
+          )
+        ],
       ),
-      onTap: () {},
-      onLongPress: () {},
     );
+    // ListTile(
+    //   dense: true,
+    //   leading: _leading(),
+    //   title: _title(),
+    //   subtitle: _subtitle(),
+    //   isThreeLine: true,
+    //   trailing: Text(
+    //     "${people?.no}",
+    //     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
+    //   ),
+    //   onTap: () {},
+    //   onLongPress: () {},
+    // );
+  }
+
+  Widget _leading() {
+    return CircleAvatar(
+        radius: 30,
+        backgroundImage: NetworkImage(
+            'https://starwars-visualguide.com/assets/img/characters/${people?.no}.jpg'));
   }
 
   Widget _subtitle() {
     return Column(
       children: [
         Row(
-          children: [Text(people?.gender ?? ' ')],
-        )
+          children: [
+            Text(
+              "Gender : ${people?.gender}   Height : ${people?.height.toString()}   Mass : ${people?.mass.toString()}",
+              style: TextStyle(fontSize: 15),
+            )
+          ],
+        ),
+        Row(
+          children: [
+            Flexible(
+              child: Text(
+                  'Hair/Skin/Eye Color : ${people?.hairColor}/${people?.skinColor}/${people?.eyeColor}'),
+            )
+          ],
+        ),
+        Row(
+          children: [Text('Year of Birth : ${people?.birthYear}')],
+        ),
       ],
     );
   }
 
   Widget _title() {
     return Row(
-      children: [Text(people?.name ?? ' ')],
+      children: [
+        Text(
+          people?.name ?? ' ',
+          style: TextStyle(fontSize: 20),
+        )
+      ],
     );
   }
 }
