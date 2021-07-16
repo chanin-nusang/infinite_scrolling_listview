@@ -13,9 +13,24 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           primaryColor: Colors.white,
-          accentColor: Colors.yellow,
+          accentColor: Colors.amberAccent,
           fontFamily: 'Kanit',
         ),
-        home: StarwarsList());
+        home: Scaffold(
+            appBar: AppBar(
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Star Wars People List',
+                      style: TextStyle(color: Colors.black, fontSize: 20)),
+                  Image.asset(
+                    'images/Star_Wars_Logo.png',
+                    fit: BoxFit.contain,
+                    height: 35,
+                  ),
+                ],
+              ),
+            ),
+            body: StarwarsList()));
   }
 }

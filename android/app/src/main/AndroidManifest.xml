@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.infinite_scrolling_listview">
    <application
-        android:label="infinite_scrolling_listview"
-        android:icon="@mipmap/ic_launcher">
+        android:label="Star Wars"
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

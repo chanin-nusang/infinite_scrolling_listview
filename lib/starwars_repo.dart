@@ -1,13 +1,10 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:dio/dio.dart';
 
 class People {
   String? name;
-  int? height;
-  int? mass;
+  String? height;
+  String? mass;
   String? birthYear;
   String? gender;
   String? homeworld;
@@ -30,8 +27,8 @@ class People {
 
   factory People.fromJson(Map<String, dynamic> json) => People(
         name: json["name"],
-        height: int.parse(json["height"]),
-        mass: int.parse(json["mass"]),
+        height: json["height"],
+        mass: json["mass"],
         hairColor: json["hair_color"],
         skinColor: json["skin_color"],
         eyeColor: json["eye_color"],
@@ -51,13 +48,10 @@ class Page {
 
 class StarwarsRepo {
   Future<List<People>> getPage(int pageNum) async {
-    final url = 'swapi.dev';
     List<People>? page;
     var dio = Dio();
     final response = await dio
         .get('https://swapi.dev/api/people/?page=$pageNum&format=json');
-    //var temp = utf8.decode(response.data.);
-    //Map<String, dynamic> js = response.data['results']; //jsonDecode(temp)["results"];
     page = List<People>.from(
         response.data['results'].map((x) => People.fromJson(x)));
     return page;
